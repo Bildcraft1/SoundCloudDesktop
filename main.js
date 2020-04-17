@@ -44,7 +44,7 @@ function createWindow () {
     mainWindow.maximize()
     loadingWindow.close()
     globalShortcut.register('Alt+x', () => {
-      if (mainWindow.getTitle() !== 'YouTube Music') {
+      if (mainWindow.getTitle() !== 'SoundCloud') {
         notificationWindow.webContents.executeJavaScript(
           'changesong("' + mainWindow.getTitle().slice(0, -16) + '");'
         )
@@ -56,7 +56,7 @@ function createWindow () {
     })
   })
   mainWindow.setMenuBarVisibility(false)
-  mainWindow.loadURL('https://music.youtube.com/')
+  mainWindow.loadURL('https://soundcloud.com/')
   mainWindow.on('closed', function () {
     app.quit()
   })
@@ -76,10 +76,10 @@ function createWindow () {
   notificationWindow.setIgnoreMouseEvents(true)
   notificationWindow.setMenuBarVisibility(false)
   notificationWindow.loadFile('assets/notifications/notification.html')
-  oldtitle = 'YouTube Music'
+  oldtitle = 'Soundcloud'
   setInterval(function () {
     if (oldtitle !== mainWindow.getTitle()) {
-      if (mainWindow.getTitle() !== 'YouTube Music') {
+      if (mainWindow.getTitle() !== 'Soundcloud') {
         notificationWindow.webContents.executeJavaScript(
           'changesong("' + mainWindow.getTitle().slice(0, -16) + '");'
         )
@@ -91,7 +91,7 @@ function createWindow () {
   // tray
   mainWindow.once('ready-to-show', () => {
     tray = new Tray(trayimage)
-    tray.setToolTip('YtDesktop')
+    tray.setToolTip('SoundCloudDesktop')
     tray.on('click', () => {
       if (mainWindow.isVisible()) {
         mainWindow.hide()
